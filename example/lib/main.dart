@@ -15,14 +15,6 @@ class MyApp extends StatelessWidget {
       title: 'Auviis Example',
       theme: ThemeData(
         // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
         primarySwatch: Colors.blue,
       ),
       home: MyHomePage(title: 'Home'),
@@ -52,6 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   bool isFreeTalk = false;
   bool tapDown = false;
+  bool tapDownVoiceMsg = false;
   void AuviisCallback(MethodCall methodCall) {
     debugPrint('AuviisCallback:' + methodCall.method);
     if (methodCall.method == "onSDKActivated"){
@@ -179,21 +172,21 @@ class _MyHomePageState extends State<MyHomePage> {
                   // When the child is tapped, show a snackbar
                   onTapDown: (TapDownDetails tapdetails ) {
                     setState(() {
-                      tapDown = true;
+                      tapDownVoiceMsg = true;
                     });
                     Auviis_recordVoice();
                   },
                   onTapUp: (TapUpDetails tapdetails ) {
                     Auviis_stopRecord();
                     setState(() {
-                      tapDown = false;
+                      tapDownVoiceMsg = false;
                     });
                   },
                   // Our Custom Button!
                   child: Container(
                     padding: EdgeInsets.all(12.0),
                     decoration: BoxDecoration(
-                      color: tapDown == true ? Colors.blue : Colors.transparent,
+                      color: tapDownVoiceMsg == true ? Colors.blue : Colors.transparent,
                       border: Border.all(color: Colors.grey),
                       borderRadius: BorderRadius.circular(2.0),
                     ),
