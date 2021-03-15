@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-//https://stackoverflow.com/questions/56852851/how-do-i-best-give-multiple-arguments-with-the-java-version-of-flutters-methodch
 const MethodChannel auviisMethodChannel =  MethodChannel('com.auviis.sdk');
 
 ValueChanged<MethodCall> auviis_Callback = null;

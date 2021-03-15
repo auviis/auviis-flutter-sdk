@@ -22,6 +22,7 @@ public class MainActivity extends FlutterActivity implements AuviisDelegate{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //
+        AuviisClass.getInstance().setDelegate(this);
         AuviisClass.loadLibrary(this);
         //checking if you have the permission
         AuviisClass.getInstance().requestAudioPermission();
@@ -38,7 +39,6 @@ public class MainActivity extends FlutterActivity implements AuviisDelegate{
                             if (call.method.equals("Auviis_startSDK")) {
                                 List<String> values = (List<String>) call.arguments;
                                 AuviisClass.init(this,values.get(0),values.get(1));
-                                AuviisClass.getInstance().setDelegate(this);
                                 AuviisClass.getInstance().connect();
                                 result.success(null);
                             }
